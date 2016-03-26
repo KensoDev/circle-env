@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/kensodev/circle-env",
+	"GoVersion": "go1.4",
+	"GodepVersion": "v60",
+	"Deps": [
+		{
+			"ImportPath": "gopkg.in/check.v1",
+			"Rev": "8d49746f13e4c654088c52685541fcf4cbc8fa59"
+		}
+	]
+}

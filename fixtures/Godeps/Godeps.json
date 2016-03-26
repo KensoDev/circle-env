@@ -1,0 +1,6 @@
+{
+	"ImportPath": "github.com/kensodev/circle-env/fixtures",
+	"GoVersion": "go1.4",
+	"GodepVersion": "v60",
+	"Deps": []
+}
