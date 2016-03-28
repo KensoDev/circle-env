@@ -9,7 +9,7 @@ func SyncCommands() []cli.Command {
 		{
 			Name:    "sync",
 			Aliases: []string{"p"},
-			Usage:   "Chef project tasks",
+			Usage:   "Sync Environment Variables to CircleCI",
 			Action: func(c *cli.Context) {
 				configuration := Configuration{
 					UserName:    c.String("username"),
