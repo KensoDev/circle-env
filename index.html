@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Circle-env by KensoDev</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Circle-env</h1>
+        <p>environment variables swiss army knife</p>
+
+        <p class="view"><a href="https://github.com/KensoDev/circle-env">View the Project on GitHub <small>KensoDev/circle-env</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/KensoDev/circle-env/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/KensoDev/circle-env/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/KensoDev/circle-env">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="env-swiss-army-knife-for-circleci-but-not-only" class="anchor" href="#env-swiss-army-knife-for-circleci-but-not-only" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>.env swiss army knife for CircleCI (but not only)</h1>
+
+<p><a href="https://circleci.com/gh/KensoDev/circleenv/tree/master"><img src="https://circleci.com/gh/KensoDev/circleenv/tree/master.svg?style=svg" alt="Circle CI"></a></p>
+
+<h2>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What?</h2>
+
+<p>This is a swiss army knife CLI to work with environment variables and CircleCI</p>
+
+<h3>
+<a id="what-it-does" class="anchor" href="#what-it-does" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What it does</h3>
+
+<h4>
+<a id="upload-environment-variables-from-env-to-circleci" class="anchor" href="#upload-environment-variables-from-env-to-circleci" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Upload environment variables from <code>.env</code> to circleCI</h4>
+
+<p>Locally, you can work with <code>.env</code> and when you execute <code>circle-env sync</code> it will "upload" all the variabvles to CircleCI.</p>
+
+<h4>
+<a id="replace-all-env-variables-in-template-files-and-rename-them" class="anchor" href="#replace-all-env-variables-in-template-files-and-rename-them" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Replace all ENV variables in template files and rename them</h4>
+
+<p>For example, lets say you have a template file that looks like this</p>
+
+<p><code>config/database.yml.template</code></p>
+
+<pre><code>production:
+    gmail_username: &lt;GMAIL_USERNAME&gt;
+    gmail_password: &lt;GMAIL_PASSWORD&gt;
+</code></pre>
+
+<p>When you execute <code>circle-env replace</code> it will scan the file for everything between <code>&lt;&gt;</code> and replace the value with the ENV variable.</p>
+
+<p>If no ENV variables with that name exists, it will leave it as is.</p>
+
+<h2>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why?</h2>
+
+<p>Environment variables are a good way to store "secrets" without checking them
+into source control.</p>
+
+<p>Things like database passwords, API keys and others do not belong in your
+source code.</p>
+
+<p><code>.env</code> and the ruby project <a href="https://github.com/bkeepers/dotenv">dotenv</a> are a
+good way to automatically load project specific environment variable.</p>
+
+<p>However, when you run your project in CI environment, those environment
+variables don't exist there by default.</p>
+
+<p>This is where this project comes in.</p>
+
+<p>Also, it's easy to create template file and only use the "real" files on CI. Say for a Docker image build</p>
+
+<h2>
+<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How?</h2>
+
+<ol>
+<li>Download the release from the <a href="https://github.com/KensoDev/circleenv/releases">releases</a> page.</li>
+<li>execute (refer to the usage section)</li>
+</ol>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<pre><code>NAME:
+   circle-env - Circle CI commands
+
+USAGE:
+   circle-env [global options] command [command options] [arguments...]
+
+VERSION:
+   0.0.3
+
+COMMANDS:
+   sync, p      Sync Environment Variables to CircleCI
+   replace, p   Replace ENV variables in files
+   help, h      Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --help, -h           show help
+   --version, -v        print the version
+
+</code></pre>
+
+<h2>
+<a id="circle-env-sync" class="anchor" href="#circle-env-sync" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>circle-env sync</code>
+</h2>
+
+<p>Syncs your <code>.env</code> file to the CircleCI project</p>
+
+<ul>
+<li>
+<code>project-name</code> your CircleCI project name (eg: <code>circleenv</code>)</li>
+<li>
+<code>username</code> Your CircleCI (and github) username (eg: <code>KensoDev</code>)</li>
+<li>
+<code>token</code> Your CircleCI API token</li>
+</ul>
+
+<p>Optional flag is the filename where you store your environment variables. By
+default it's <code>.env</code> in the current working directory (Which is the easiest to
+follow/remember)</p>
+
+<h2>
+<a id="circle-env-replace" class="anchor" href="#circle-env-replace" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>circle-env replace</code>
+</h2>
+
+<p>Scans your current working directory for <code>.template</code> files, scans the env variable in them and writes the file, replacing the content.</p>
+
+<p>This will turn <code>database.yml.template</code> to <code>database.yml</code> with the variables replaces from env variables.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2016 Avi Tzurel</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/KensoDev">KensoDev</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
