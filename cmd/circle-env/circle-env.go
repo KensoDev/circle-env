@@ -1,27 +1,17 @@
 package main
 
 import (
+	"github.com/codegangsta/cli"
 	"github.com/kensodev/circleenv"
-	"gopkg.in/alecthomas/kingpin.v2"
-)
-
-var (
-	filename    = kingpin.Flag("filename", ".env file location").Default(".env").String()
-	projectName = kingpin.Flag("project-name", "Cirle project name").Required().String()
-	token       = kingpin.Flag("token", "Circle API token").Required().String()
-	username    = kingpin.Flag("username", "Circle User Name").Required().String()
+	"os"
 )
 
 func main() {
-	kingpin.Parse()
+	app := cli.NewApp()
+	app.Name = "circle"
+	app.Usage = "Circle CI commands"
+	app.Version = "0.0.3"
+	app.Commands = append(app.Commands, circleenv.SyncCommands()...)
 
-	configuration := circleenv.Configuration{
-		UserName:    *username,
-		Token:       *token,
-		ProjectName: *projectName,
-		FileName:    *filename,
-	}
-
-	sender := circleenv.NewSender(configuration)
-	sender.Send()
+	app.Run(os.Args)
 }

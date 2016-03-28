@@ -28,18 +28,27 @@ This is where this project comes in.
 ## Usage
 
 ```
-usage: circle-env --project-name=PROJECT-NAME --token=TOKEN --username=USERNAME
+name:
+   circle - circle ci commands
 
-Flags:
-  --help               Show help (also see --help-long and --help-man).
-  --filename=".env"    .env file location
-  --project-name=PROJECT-NAME
-                       Cirle project name
-  --token=TOKEN        Circle API token
-  --username=USERNAME  Circle User Name
+usage:
+   circle-env [global options] command [command options] [arguments...]
+
+version:
+   0.0.3
+
+commands:
+   sync, p      chef project tasks
+   help, h      shows a list of commands or help for one command
+
+global options:
+   --help, -h           show help
+   --version, -v        print the version
 ```
 
-There are 3 flags you will need to provide.
+## `circle sync`
+
+Syncs your `.env` file to the CircleCI project
 
 * `project-name` your CircleCI project name (eg: `circleenv`)
 * `username` Your CircleCI (and github) username (eg: `KensoDev`)
