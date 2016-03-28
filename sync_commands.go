@@ -11,7 +11,7 @@ func SyncCommands() []cli.Command {
 			Aliases: []string{"p"},
 			Usage:   "Sync Environment Variables to CircleCI",
 			Action: func(c *cli.Context) {
-				configuration := Configuration{
+				configuration := &Configuration{
 					UserName:    c.String("username"),
 					Token:       c.String("token"),
 					ProjectName: c.String("project-name"),

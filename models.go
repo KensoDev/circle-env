@@ -11,3 +11,8 @@ type Configuration struct {
 	UserName    string
 	Token       string
 }
+
+type Match struct {
+	MatchString      string
+	MatchEnvVariable string
+}

@@ -1,8 +1,34 @@
-# .env to CircleCI
+# .env swiss army knife for CircleCI (but not only)
 
 [![Circle CI](https://circleci.com/gh/KensoDev/circleenv/tree/master.svg?style=svg)](https://circleci.com/gh/KensoDev/circleenv/tree/master)
 
-turn your .env file into CircleCI project specific environment varibles
+## What?
+
+This is a swiss army knife CLI to work with environment variables and CircleCI
+
+### What it does
+
+#### Upload environment variables from `.env` to circleCI
+
+Locally, you can work with `.env` and when you execute `circle sync` it will "upload" all the variabvles to CircleCI.
+
+#### Replace all ENV variables in template files and rename them
+
+For example, lets say you have a template file that looks like this
+
+`config/database.yml.template`
+
+
+```
+production:
+	gmail_username: <GMAIL_USERNAME>
+	gmail_password: <GMAIL_PASSWORD>
+```
+
+When you execute `circle replace` it will scan the file for everything between `<>` and replace the value with the ENV variable.
+
+If no ENV variables with that name exists, it will leave it as is.
+
 
 ## Why?
 
@@ -20,6 +46,8 @@ variables don't exist there by default.
 
 This is where this project comes in.
 
+Also, it's easy to create template file and only use the "real" files on CI. Say for a Docker image build
+
 ## How?
 
 1. Download the release from the [releases](https://github.com/KensoDev/circleenv/releases) page.
@@ -28,22 +56,24 @@ This is where this project comes in.
 ## Usage
 
 ```
-name:
-   circle - circle ci commands
+NAME:
+   circle - Circle CI commands
 
-usage:
+USAGE:
    circle-env [global options] command [command options] [arguments...]
 
-version:
+VERSION:
    0.0.3
 
-commands:
-   sync, p      chef project tasks
-   help, h      shows a list of commands or help for one command
+COMMANDS:
+   sync, p      Sync Environment Variables to CircleCI
+   replace, p   Replace ENV variables in files
+   help, h      Shows a list of commands or help for one command
 
-global options:
+GLOBAL OPTIONS:
    --help, -h           show help
    --version, -v        print the version
+
 ```
 
 ## `circle sync`
@@ -57,6 +87,12 @@ Syncs your `.env` file to the CircleCI project
 Optional flag is the filename where you store your environment variables. By
 default it's `.env` in the current working directory (Which is the easiest to
 follow/remember)
+
+## `circle replace`
+
+Scans your current working directory for `.template` files, scans the env variable in them and writes the file, replacing the content.
+
+This will turn `database.yml.template` to `database.yml` with the variables replaces from env variables.
 
 ## License
 

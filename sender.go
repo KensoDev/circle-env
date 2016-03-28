@@ -9,7 +9,7 @@ import (
 )
 
 type Sender struct {
-	Config Configuration
+	Config *Configuration
 }
 
 func (sender *Sender) Send() {
@@ -36,6 +36,6 @@ func (sender *Sender) url() string {
 	return fmt.Sprintf("https://circleci.com/api/v1/project/%v/%v/envvar?circle-token=%v", sender.Config.UserName, sender.Config.ProjectName, sender.Config.Token)
 }
 
-func NewSender(configuration Configuration) *Sender {
+func NewSender(configuration *Configuration) *Sender {
 	return &Sender{Config: configuration}
 }
