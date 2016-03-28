@@ -24,7 +24,7 @@ func (sender *Sender) Send() {
 		resp, err := client.Do(req)
 
 		body, _ := ioutil.ReadAll(resp.Body)
-		fmt.Println("response Body:", string(body))
+		fmt.Println("Updated: ", string(body))
 
 		if err != nil {
 			panic(err)
