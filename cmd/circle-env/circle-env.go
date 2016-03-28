@@ -8,7 +8,7 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "circle"
+	app.Name = "circle-env"
 	app.Usage = "Circle CI commands"
 	app.Version = "1.0.0"
 	app.Commands = append(app.Commands, circleenv.SyncCommands()...)
