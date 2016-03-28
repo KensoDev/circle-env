@@ -10,7 +10,7 @@ This is a swiss army knife CLI to work with environment variables and CircleCI
 
 #### Upload environment variables from `.env` to circleCI
 
-Locally, you can work with `.env` and when you execute `circle sync` it will "upload" all the variabvles to CircleCI.
+Locally, you can work with `.env` and when you execute `circle-env sync` it will "upload" all the variabvles to CircleCI.
 
 #### Replace all ENV variables in template files and rename them
 
@@ -25,7 +25,7 @@ production:
 	gmail_password: <GMAIL_PASSWORD>
 ```
 
-When you execute `circle replace` it will scan the file for everything between `<>` and replace the value with the ENV variable.
+When you execute `circle-env replace` it will scan the file for everything between `<>` and replace the value with the ENV variable.
 
 If no ENV variables with that name exists, it will leave it as is.
 
@@ -57,7 +57,7 @@ Also, it's easy to create template file and only use the "real" files on CI. Say
 
 ```
 NAME:
-   circle - Circle CI commands
+   circle-env - Circle CI commands
 
 USAGE:
    circle-env [global options] command [command options] [arguments...]
@@ -76,7 +76,7 @@ GLOBAL OPTIONS:
 
 ```
 
-## `circle sync`
+## `circle-env sync`
 
 Syncs your `.env` file to the CircleCI project
 
@@ -88,7 +88,7 @@ Optional flag is the filename where you store your environment variables. By
 default it's `.env` in the current working directory (Which is the easiest to
 follow/remember)
 
-## `circle replace`
+## `circle-env replace`
 
 Scans your current working directory for `.template` files, scans the env variable in them and writes the file, replacing the content.
 
