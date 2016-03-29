@@ -4,7 +4,9 @@
 
 ## What?
 
-This is a swiss army knife CLI to work with environment variables and CircleCI
+This is a swiss army knife CLI to work with environment variables and CircleCI.
+
+It's designed to work "ON" the CI and also configure the CI with ENV variables.
 
 ### What it does
 
@@ -16,19 +18,17 @@ Locally, you can work with `.env` and when you execute `circle-env sync` it will
 
 For example, lets say you have a template file that looks like this
 
-`config/database.yml.template`
-
+`run.sh.template`
 
 ```
-production:
-	gmail_username: <GMAIL_USERNAME>
-	gmail_password: <GMAIL_PASSWORD>
+/usr/bin/var/some-binary --database-name=<DB_NAME>  --password=<DB_PASSWORD>
 ```
 
 When you execute `circle-env replace` it will scan the file for everything between `<>` and replace the value with the ENV variable.
 
-If no ENV variables with that name exists, it will leave it as is.
+So `<DB_NAME>` will be replaced with the value of `$DB_NAME` on the CI or local env.
 
+The cli will write the file, dropping the `.template` extension, making sure you have a file you can work with. From here you can build your docker container, or anything else you want to do with the result file.
 
 ## Why?
 
