@@ -16,3 +16,7 @@ type Match struct {
 	MatchString      string
 	MatchEnvVariable string
 }
+
+func (c *Configuration) GetToken() string {
+	return c.Token
+}
