@@ -1,6 +1,6 @@
 # .env swiss army knife for CircleCI (but not only)
 
-[![Circle CI](https://circleci.com/gh/KensoDev/circleenv/tree/master.svg?style=svg)](https://circleci.com/gh/KensoDev/circleenv/tree/master)
+[![Circle CI](https://circleci.com/gh/KensoDev/circle-env/tree/master.svg?style=svg)](https://circleci.com/gh/KensoDev/circle-env/tree/master)
 
 ## What?
 
